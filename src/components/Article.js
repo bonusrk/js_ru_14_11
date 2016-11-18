@@ -6,30 +6,25 @@ class Article extends Component {
         super();
         this.state = {
             isOpen: false,
-            obj: {foo: 'bar'},
             commentsVisible: false
         }
     }
 
     render() {
         const {article} = this.props;
+        const comments = this.state.commentsVisible ? <Comments comments={article.comments}/> : null;
         const btnText = this.state.commentsVisible ? 'hide' : 'show';
-        const button = this.state.isOpen ? <button onClick={this.showComments}>{btnText}</button> : null;
-        const body = this.state.isOpen ? <p>{article.text}<br/>{button} </p> : null;
-
-        const comments = this.state.commentsVisible ? <ul><Comments comments={article.comments}/></ul> : null;
-
-
+        const button = this.state.isOpen ? <p><button onClick={this.showComments}>{btnText}</button></p> : null;
+        const body = this.state.isOpen ? <p>{article.text}</p> : null;
         return (
             <section>
                 <h3 onClick={this.handleClick}>{article.title}</h3>
                 {body}
+                {button}
                 {comments}
-
             </section>
         )
     }
-
 
     // define show/hide comment button  event
     showComments = ev => {
@@ -43,8 +38,6 @@ class Article extends Component {
             isOpen: !this.state.isOpen
         })
     }
-
-
 }
 
 export default Article
