@@ -1,40 +1,34 @@
-import React, {Component} from 'react'
-import CommentsList from './CommentsList'
+import React, { Component, PropTypes } from 'react'
+import CommentList from './CommentList'
 
-class Article extends Component {
-
-    constructor() {
-        super();
-        this.state = {
-            isOpen: false,
-            //внеси этот стейт в Comments, а то очень перегруженный компонент выйдет
-            commentsVisible: false
-        }
-    }
-
-    render() {
-        const {article} = this.props;
-        // const comments = this.state.commentsVisible ? <Comments comments={article.comments}/> : null;
-        // const btnText = this.state.commentsVisible ? 'hide' : 'show';
-        // const button = this.state.isOpen ? <p><button onClick={this.showComments}>{btnText}</button></p> : null;
-        const body = this.state.isOpen ?
-            <div>
-                {article.text}
-                <CommentsList comments={article.comments}/>
-            </div> : null;
-        return (
-            <section>
-                <h3 onClick={this.handleClick}>{article.title}</h3>
-                {body}
-            </section>
-        )
-    }
-
-    handleClick = ev => {
-        this.setState({
-            isOpen: !this.state.isOpen
-        })
-    }
+function Article(props) {
+    const { article, toggleOpen } = props
+    return (
+        <section>
+            <h3 onClick = {toggleOpen}>{article.title}</h3>
+            {getBody(props)}
+        </section>
+    )
 }
+
+Article.propTypes = {
+    article: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        comments: PropTypes.array,
+        text: PropTypes.string
+    }).isRequired
+}
+
+function getBody(props) {
+    const { article, isOpen } = props
+    if (!isOpen) return null
+    return (
+        <div>
+            <p>{article.text}</p>
+            <CommentList comments = {article.comments} />
+        </div>
+    )
+}
+
 
 export default Article
