@@ -6,6 +6,7 @@ class Article extends Component {
         super();
         this.state = {
             isOpen: false,
+            //внеси этот стейт в Comments, а то очень перегруженный компонент выйдет
             commentsVisible: false
         }
     }
