@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import CommentList from './CommentList'
+import toggleOpen from '../decorators/toggleOpen'
 
 function Article(props) {
-    const { article, toggleOpen } = props
+    const { article, toggleOpen, isOpen } = props;
     return (
         <section>
             <h3 onClick = {toggleOpen}>{article.title}</h3>
@@ -17,11 +18,11 @@ Article.propTypes = {
         comments: PropTypes.array,
         text: PropTypes.string
     }).isRequired
-}
+};
 
 function getBody(props) {
-    const { article, isOpen } = props
-    if (!isOpen) return null
+    const { article, isOpen } = props;
+    if (!isOpen) return null;
     return (
         <div>
             <p>{article.text}</p>

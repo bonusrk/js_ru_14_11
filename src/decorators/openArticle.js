@@ -1,15 +1,15 @@
 import React from 'react'
 
-export default (Component) => class ToggleOpen extends React.Component {
+export default (Component) => class openArticle extends React.Component {
     constructor() {
         super();
         this.state = {
-            openArticleId: null
+            isOpen: false
         }
     }
 
     render() {
-        return <Component {...this.props} {...this.state} openArticleId = {this.toggleOpen}/>
+        return <Component {...this.props} {...this.state} toggleOpen = {this.toggleOpen}/>
     }
 
     toggleOpen = ev => {

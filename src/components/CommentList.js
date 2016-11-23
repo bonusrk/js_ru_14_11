@@ -13,15 +13,15 @@ class CommentList extends Component {
     }
 
     getButton() {
-        const { comments, isOpen, toggleOpen } = this.props
-        if ( !comments || !comments.length) return <span>No comments yet</span>
+        const { comments, isOpen, toggleOpen } = this.props;
+        if ( !comments || !comments.length) return <span>No comments yet</span>;
         return <a href="#" onClick = {toggleOpen}>{isOpen ? 'hide' : 'show'} comments</a>
     }
 
     getList() {
-        const { comments, isOpen } = this.props
-        if (!isOpen || !comments || !comments.length) return null
-        const commentItems = comments.map(comment => <li key = {comment.id}><Comment comment = {comment} /></li>)
+        const { comments, isOpen } = this.props;
+        if (!isOpen || !comments || !comments.length) return null;
+        const commentItems = comments.map(comment => <li key = {comment.id}><Comment comment = {comment} /></li>);
         return <ul>{commentItems}</ul>
     }
 }
