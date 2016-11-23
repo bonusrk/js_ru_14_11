@@ -1,18 +1,18 @@
 import React, {Component}  from 'react'
 import Article from './Article'
-import openArticle from '../decorators/openArticle'
+import accord from '../decorators/accord'
 
 class ArticleList extends Component {
 
 
     render() {
-        const {articles, openArticleId, toggleOpen} = this.props;
+        const {articles, openArticle, toggleOpen} = this.props;
 
         const articleItems = articles.map(article => (
             <li key={article.id}>
                 <Article
                     article={article}
-                    isOpen={article.id === openArticleId}
+                    isOpen={article.id === openArticle(article.id)}
                     toggleOpen={toggleOpen}
                 />
             </li>
@@ -27,4 +27,4 @@ class ArticleList extends Component {
         )
     }
 }
-export default openArticle(ArticleList)
+export default accord(ArticleList)

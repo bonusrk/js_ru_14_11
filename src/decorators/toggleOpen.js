@@ -4,7 +4,7 @@ export default (Component) => class ToggleOpen extends React.Component {
     constructor() {
         super();
         this.state = {
-            openArticleId: null
+            isOpen: false
         }
     }
 
