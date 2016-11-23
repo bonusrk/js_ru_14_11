@@ -1,7 +1,7 @@
 import React, {Component}  from 'react'
 import Article from './Article'
 import accord from '../decorators/accord'
-
+//А проптайпсы?)
 class ArticleList extends Component {
 
     render() {
