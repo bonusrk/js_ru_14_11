@@ -9,7 +9,7 @@ export default (Component) => class ToggleOpen extends React.Component {
     }
 
     render() {
-        return <Component {...this.props} {...this.state} openArticleId = {this.toggleOpen}/>
+        return <Component {...this.props} {...this.state} toggleOpen = {this.toggleOpen}/>
     }
 
     toggleOpen = ev => {

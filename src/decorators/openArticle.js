@@ -4,18 +4,23 @@ export default (Component) => class openArticle extends React.Component {
     constructor() {
         super();
         this.state = {
-            isOpen: false
-        }
+            openArticleId: null
+        };
     }
 
     render() {
-        return <Component {...this.props} {...this.state} toggleOpen = {this.toggleOpen}/>
+        return <Component {...this.props} {...this.state} toggleOpen={this.toggleOpen} openArticle={this.openArticle}/>
     }
 
-    toggleOpen = ev => {
+    openArticle = id => ev => {
         this.setState({
-            isOpen: !this.state.isOpen
+            openArticleId: this.state.openArticleId === id ? null : id
         })
+    };
+
+    toggleOpen = ev =>{
+
     }
+
 
 }

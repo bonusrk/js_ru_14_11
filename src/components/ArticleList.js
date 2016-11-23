@@ -1,21 +1,19 @@
 import React, {Component}  from 'react'
 import Article from './Article'
-import toggleOpen from '../decorators/toggleOpen'
+import openArticle from '../decorators/openArticle'
 
 class ArticleList extends Component {
-    state = {
-        openArticleId: null
-    };
+
 
     render() {
-        const {articles, openArticleId} = this.props;
+        const {articles, openArticleId, toggleOpen} = this.props;
 
         const articleItems = articles.map(article => (
             <li key={article.id}>
                 <Article
                     article={article}
-                    isOpen={article.id == this.openArticleId}
-                    toggleOpen={this.openArticle(article.id)}
+                    isOpen={article.id === openArticleId}
+                    toggleOpen={toggleOpen}
                 />
             </li>
         ));
@@ -28,12 +26,5 @@ class ArticleList extends Component {
             </div>
         )
     }
-
-    openArticle = id => ev => {
-        this.setState({
-            openArticleId: this.state.openArticleId === id ? null : id
-        })
-    }
 }
-
-export default ArticleList
+export default openArticle(ArticleList)
