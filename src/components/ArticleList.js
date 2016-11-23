@@ -4,16 +4,15 @@ import accord from '../decorators/accord'
 
 class ArticleList extends Component {
 
-
     render() {
-        const {articles, openArticle, toggleOpen} = this.props;
+        const {articles, openArticle, openArticleId} = this.props;
 
         const articleItems = articles.map(article => (
             <li key={article.id}>
                 <Article
                     article={article}
-                    isOpen={article.id === openArticle(article.id)}
-                    toggleOpen={toggleOpen}
+                    isOpen={openArticleId == article.id}
+                    toggleOpen={openArticle(article.id)}
                 />
             </li>
         ));

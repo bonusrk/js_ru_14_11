@@ -1,22 +1,18 @@
 import React from 'react'
 
 export default (Component) => class Accord extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            openArticleId: null,
-        };
-    }
+    state = {
+        openArticleId: null,
+    };
 
-
-    openArticle = id => this.state.openArticleId === id;
-
-    toggleOpen = id =>ev =>this.setState({
-        openArticleId: this.openArticle(id) ? null: id
-    });
+    openArticle = id => ev => {
+        this.setState({
+            openArticleId: id == this.state.openArticleId ? null : id
+        })
+    };
 
     render() {
-        return <Component {...this.props} toggleOpen={this.toggleOpen} openArticle={this.openArticle}/>
+        return <Component {...this.props} {...this.state} openArticle={this.openArticle}/>
     }
 
 }
