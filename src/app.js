@@ -4,4 +4,4 @@ import { articles } from './fixtures'
 import App from './components/App'
 
 
-render(<App articles = {articles} />, document.getElementById('container'))
+render(<App articles = {articles} />, document.getElementById('container'));
