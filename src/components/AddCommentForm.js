@@ -24,7 +24,7 @@ class AddCommentForm extends Component {
                 <hr/>
                 <div>Author : <strong>{author}</strong></div>
                 <div>
-                    <textarea name="comment" rows="10" cols="30" value={this.state.text} onChange = {this.handleChange('content')}/>
+                    <textarea name="comment" rows="10" cols="30" value={this.state.content} onChange = {this.handleChange('content')}/>
                 </div>
                 <button>Submit</button>
             </form>
