@@ -2,7 +2,7 @@ import React from 'react'
 
 export default (Component) => class AccordionDecorator extends React.Component {
     constructor() {
-        super()
+        super();
         this.state = {
             openItemId: false
         }

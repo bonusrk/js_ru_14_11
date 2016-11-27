@@ -1,30 +1,36 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 
 class AddCommentForm extends Component {
+    constructor() {
+        super();
+        this.state = {
+            content: '',
+        };
 
-    state = {
-        author: null,
-        formContent: '',
-    };
+    }
 
     static defaultProps = {
         username: 'Anonimus',
     };
 
+    handleChange = field => event => this.setState({
+        [field]: event.target.value
+    });
+
     render() {
         const author = <label>{this.props.username}</label>;
-        const placeholder = 'Place text here';
         return (
             <form method="" action="">
                 <hr/>
                 <div>Author : <strong>{author}</strong></div>
                 <div>
-                    <textarea name="comment" rows="10" cols="30" placeholder={placeholder}/>
+                    <textarea name="comment" rows="10" cols="30" value={this.state.text} onChange = {this.handleChange('text')}/>
                 </div>
                 <button>Submit</button>
             </form>
         )
     }
+
 }
 
 export default AddCommentForm
