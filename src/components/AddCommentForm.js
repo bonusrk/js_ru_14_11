@@ -10,6 +10,7 @@ class AddCommentForm extends Component {
     }
 
     static defaultProps = {
+        //ок, но я говорил для автора тоже поле сделать
         username: 'Anonimus',
     };
 
