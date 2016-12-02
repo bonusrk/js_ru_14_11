@@ -1,18 +1,16 @@
-import React, { Component, PropTypes } from 'react'
+import React, {Component, PropTypes} from 'react'
 import store from '../store'
-import { increment } from '../AC/counter'
+import {increment} from '../AC/counter'
 
 class Counter extends Component {
-    static propTypes = {
-
-    };
+    static propTypes = {};
 
     state = {
         count: store.getState().count
     }
 
     componentDidMount() {
-        store.subscribe(this.onStoreChange)
+        store.subscribe(this.onStoreChange);
     }
 
     onStoreChange = () => {
@@ -25,7 +23,7 @@ class Counter extends Component {
         return (
             <div>
                 <h2>{this.state.count}</h2>
-                <a href="#" onClick = {this.incrementCounter}>increment</a>
+                <a href="#" onClick={this.incrementCounter}>increment</a>
             </div>
         )
     }

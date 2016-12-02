@@ -1,2 +1,4 @@
-export const DELETE_ARTICLE = 'DELETE_ARTICLE'
-export const INCREMENT = 'INCREMENT'
+export const DELETE_ARTICLE = 'DELETE_ARTICLE';
+export const INCREMENT = 'INCREMENT';
+export const FILTER_BY_NAME ='FILTER_BY_NAME';
+export const FILTER_BY_DATE ='FILTER_BY_DATE';
