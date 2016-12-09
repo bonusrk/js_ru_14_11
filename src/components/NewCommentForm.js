@@ -1,6 +1,4 @@
-import React, {Component, PropTypes} from 'react'
-import {add_comment} from '../AC/comment'
-
+import React, { Component, PropTypes } from 'react'
 
 class NewCommentForm extends Component {
     state = {
@@ -17,15 +15,19 @@ class NewCommentForm extends Component {
 
     handleSubmit = ev => {
         ev.preventDefault()
-        this.props.onAddComment(this.state)
+        this.props.addComment(this.state, this.props.articleId)
+        this.setState({
+            user: '',
+            text: ''
+        })
     }
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                comment: <input type="text" value={this.state.text} onChange={this.handleChange('text')}/>
-                user: <input type="text" value={this.state.user} onChange={this.handleChange('user')}/>
-                <input type="submit"/>
+            <form onSubmit = {this.handleSubmit}>
+                comment: <input type="text" value={this.state.text} onChange = {this.handleChange('text')}/>
+                user: <input type="text" value={this.state.user} onChange = {this.handleChange('user')}/>
+                <input type = "submit"/>
             </form>
         )
     }

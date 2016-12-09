@@ -1,35 +1,36 @@
-import React, {Component, PropTypes} from 'react'
-import {findDOMNode} from 'react-dom'
+import React, { Component, PropTypes } from 'react'
+import { findDOMNode } from 'react-dom'
 import CommentList from './CommentList'
-import {deleteArticle} from '../AC/articles'
-import {connect} from 'react-redux'
+import Loader from './Loader'
+import { deleteArticle, loadArticle } from '../AC/articles'
+import { connect } from 'react-redux'
 
 class Article extends Component {
 
-    /*
-     shouldComponentUpdate(nextProps) {
-     return nextProps.isOpen != this.props.isOpen
-     }
-     */
-    componentDidMount() {
-
+/*
+    shouldComponentUpdate(nextProps) {
+        return nextProps.isOpen != this.props.isOpen
     }
+*/
 
     componentWillUpdate() {
+        console.log('---', 'updating Article')
+    }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.isOpen && !this.props.isOpen && !nextProps.article.text) this.props.loadArticle(this.props.article.id)
     }
 
     componentDidUpdate() {
-        // console.log('---', findDOMNode(this.refs.comments))
-        console.log(this.props.article.comments)
+        console.log('---', findDOMNode(this.refs.comments))
     }
 
     render() {
-        const {article, toggleOpen} = this.props
+        const { article, toggleOpen } = this.props
         return (
             <section>
-                <h3 onClick={toggleOpen}>{article.title}</h3>
-                <a href="#" onClick={this.handleDeleteArticle}>delete me</a>
+                <h3 onClick = {toggleOpen}>{article.title}</h3>
+                <a href = "#" onClick = {this.handleDeleteArticle}>delete me</a>
                 {this.getBody()}
             </section>
         )
@@ -37,19 +38,20 @@ class Article extends Component {
 
 
     getBody() {
-        const {article, isOpen} = this.props
+        const { article, isOpen } = this.props
         if (!isOpen) return null
+        if (article.loading) return <Loader />
         return (
             <div>
                 <p>{article.text}</p>
-                <CommentList commentIds={article.comments} ref="comments"/>
+                <CommentList article = {article} ref = "comments" />
             </div>
         )
     }
 
     handleDeleteArticle = ev => {
         ev.preventDefault()
-        const {deleteArticle, article} = this.props
+        const { deleteArticle, article } = this.props
         deleteArticle(article.id)
     }
 }
@@ -66,5 +68,5 @@ Article.propTypes = {
 
 
 export default connect(null, {
-    deleteArticle
+    deleteArticle, loadArticle
 })(Article)
