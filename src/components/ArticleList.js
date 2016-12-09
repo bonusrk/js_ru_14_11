@@ -57,6 +57,7 @@ class ArticleList extends Component {
 
 export default connect(state => {
     const { articles, filters } = state
+    console.log(typeof(articles))
     const selected = filters.selected
     const { from, to } = filters.dateRange
 
@@ -66,6 +67,6 @@ export default connect(state => {
             (!from || !to || (published > from && published < to))
     })
     return {
-        articles: filteredArticles
+        articles: filteredArticles.toArray()
     }
 })(accordion(ArticleList))
